@@ -7,3 +7,7 @@ out/
 .vercel
 *.tsbuildinfo
 /coverage
+
+# Storybook
+storybook-static/
+*storybook.log
