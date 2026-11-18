@@ -1,8 +1,8 @@
 # Archive Ribbon — History Timeline
 
-A client-only museum-label timeline over four hard-coded, synthetic study entries (a clay tally, a road milestone,
-a printer's proof, a radio transcript). Pick a stop on the thread to open its label, note and question; the ribbon
-colour follows the entry.
+A museum-label timeline over four hard-coded, synthetic study entries (a clay tally, a road milestone, a printer's
+proof, a radio transcript), on the shared Reader shell (see `READER.md`). The home page lists the thread; each entry
+has its own server-rendered page (`/entries/<id>`) with its label, note, question and earlier / later links.
 
 Live: https://history.bookchaowalit.com (Vercel builds every push to `main`, see `PRODUCT.md`).
 
