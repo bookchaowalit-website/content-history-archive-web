@@ -55,6 +55,14 @@ describe("entry pages", () => {
   });
 });
 
+describe("share data", () => {
+  it("gives each entry its own share title, description and URL", async () => {
+    const meta = await generateMetadata(params("press"));
+    expect(meta.openGraph).toMatchObject({ url: "https://history.bookchaowalit.com/entries/press", title: "A page travels farther", type: "article" });
+    expect(meta.twitter).toMatchObject({ title: "A page travels farther" });
+  });
+});
+
 describe("site files", () => {
   it("uses the site's own domain and sends /more-projects to the main site", async () => {
     expect(sitemap().map((u) => u.url)).toContain("https://history.bookchaowalit.com/entries/signal");

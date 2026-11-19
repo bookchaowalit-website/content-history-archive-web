@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EraView } from "@/components/archive-views";
+import { EraView, SITE } from "@/components/archive-views";
 import { eras } from "@/lib/archive";
 
 type Props = { params: Promise<{ id: string }> };
@@ -17,7 +17,15 @@ export function generateStaticParams() {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const era = await find(props);
-  return era ? { title: era.title, description: era.note, alternates: { canonical: `/entries/${era.id}` } } : {};
+  if (!era) return {};
+  // Each entry shares as itself (layout.tsx sets the home page's Open Graph data).
+  return {
+    title: era.title,
+    description: era.note,
+    alternates: { canonical: `/entries/${era.id}` },
+    openGraph: { type: "article", url: `${SITE}/entries/${era.id}`, title: era.title, description: era.note, siteName: "Archive Ribbon" },
+    twitter: { card: "summary", title: era.title, description: era.note },
+  };
 }
 
 export default async function EraPage(props: Props) {
